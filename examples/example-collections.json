@@ -1,0 +1,66 @@
+[
+  {
+    "Name": "Commander Staples",
+    "Id": "1",
+    "Priority": 1,
+    "Cards": [
+      {
+        "Card": {
+          "Name": "Sol Ring",
+          "SetCode": "2XM",
+          "CollectorNumber": "331",
+          "IsFoil": false
+        },
+        "Quantity": 5,
+        "CollectionName": "Commander Staples"
+      },
+      {
+        "Card": {
+          "Name": "Command Tower",
+          "SetCode": "CMR",
+          "CollectorNumber": "350",
+          "IsFoil": false
+        },
+        "Quantity": 8,
+        "CollectionName": "Commander Staples"
+      },
+      {
+        "Card": {
+          "Name": "Arcane Signet",
+          "SetCode": "CMR",
+          "CollectorNumber": "297",
+          "IsFoil": false
+        },
+        "Quantity": 6,
+        "CollectionName": "Commander Staples"
+      }
+    ]
+  },
+  {
+    "Name": "Budget Collection",
+    "Id": "2",
+    "Priority": 2,
+    "Cards": [
+      {
+        "Card": {
+          "Name": "Evolving Wilds",
+          "SetCode": "C21",
+          "CollectorNumber": "291",
+          "IsFoil": false
+        },
+        "Quantity": 20,
+        "CollectionName": "Budget Collection"
+      },
+      {
+        "Card": {
+          "Name": "Cultivate",
+          "SetCode": "M11",
+          "CollectorNumber": "168",
+          "IsFoil": false
+        },
+        "Quantity": 8,
+        "CollectionName": "Budget Collection"
+      }
+    ]
+  }
+]
