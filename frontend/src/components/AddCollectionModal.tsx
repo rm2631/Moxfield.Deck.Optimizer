@@ -42,7 +42,7 @@ export function AddCollectionModal({ isOpen, onClose, onAdd }: AddCollectionModa
       onAdd(url, `Collection: ${name}`);
       setUrl('');
       setError('');
-    } catch (err) {
+    } catch {
       setError('Failed to fetch collection data');
     } finally {
       setLoading(false);

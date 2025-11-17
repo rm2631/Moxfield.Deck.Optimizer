@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X } from 'lucide-react';
 import type { Collection } from '../types';
 
@@ -9,20 +9,10 @@ interface EditCollectionModalProps {
   onSave: (collection: Collection) => void;
 }
 
-export function EditCollectionModal({ isOpen, collection, onClose, onSave }: EditCollectionModalProps) {
-  const [priority, setPriority] = useState(3);
-  const [role, setRole] = useState<'source' | 'target' | 'both'>('source');
-  const [active, setActive] = useState(true);
-
-  useEffect(() => {
-    if (collection) {
-      setPriority(collection.priority);
-      setRole(collection.role);
-      setActive(collection.active);
-    }
-  }, [collection]);
-
-  if (!isOpen || !collection) return null;
+function EditForm({ collection, onClose, onSave }: { collection: Collection; onClose: () => void; onSave: (collection: Collection) => void }) {
+  const [priority, setPriority] = useState(collection.priority);
+  const [role, setRole] = useState<'source' | 'target' | 'both'>(collection.role);
+  const [active, setActive] = useState(collection.active);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,19 +25,7 @@ export function EditCollectionModal({ isOpen, collection, onClose, onSave }: Edi
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-semibold">Edit Collection</h2>
-          <button
-            onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="p-4 space-y-4">
+    <form onSubmit={handleSubmit} className="p-4 space-y-4">
           <div>
             <h3 className="font-medium text-gray-900 mb-1">{collection.name}</h3>
             <p className="text-sm text-gray-500 truncate">{collection.url}</p>
@@ -141,6 +119,26 @@ export function EditCollectionModal({ isOpen, collection, onClose, onSave }: Edi
             </button>
           </div>
         </form>
+    );
+}
+
+export function EditCollectionModal({ isOpen, collection, onClose, onSave }: EditCollectionModalProps) {
+  if (!isOpen || !collection) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-xl font-semibold">Edit Collection</h2>
+          <button
+            onClick={onClose}
+            className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        
+        <EditForm key={collection.id} collection={collection} onClose={onClose} onSave={onSave} />
       </div>
     </div>
   );
